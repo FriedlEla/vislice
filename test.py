@@ -1,4 +1,5 @@
 #praštevila do 200
+#konjiček
 
 def je_prastevilo(n):
     for i in range(i, n):
