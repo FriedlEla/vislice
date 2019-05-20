@@ -61,7 +61,7 @@ class Igra:
         if crka in self.crke:
             return PONOVLJENA_CRKA
         else:
-            if crka not in self.geslo():
+            if crka not in self.geslo:
                 if self.poraz():
                     return PORAZ
                 else: return  NAPACNA_CRKA
@@ -78,6 +78,39 @@ with open("besede.txt", "r") as f:
 
 def nova_igra():
     return Igra(random.choice(bazen_besed))
+
+
+ZACETEK = "E"
+
+class Vislice:
+
+    def __init__(self):
+        self.igre = {}
+
+    def prost_id_igre(self):
+        if self.igre == {}:
+            return 0
+        else: 
+            return max(self.igre.keys()) + 1
+
+    def nova_igre(self):
+        id_igre = self.prost_id_igre()
+        igra = nova_igra()
+        self.igre[id_igre] = (igra, ZACETEK)
+        return id_igre
+         
+    def ugibaj(self, id_igre, crka):
+        igra, _ = self.igre[id_igre]
+        stanje = igra.ugibaj(crka) 
+        self.igre[id_igre] = (igra, stanje)
+        return id_igre
+
+    
+
+
+
+        
+
 
 
 
