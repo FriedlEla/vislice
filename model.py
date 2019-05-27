@@ -9,7 +9,8 @@ PORAZ = "X"
 
 class Igra:
     def __init__(self, geslo, crke=None):
-        self.geslo = geslo
+        self.geslo = geslo.upper()
+        print(self.geslo)
         self.crke = [] if crke == None else crke
 
     def napacne_crke(self):
@@ -61,6 +62,7 @@ class Igra:
         if crka in self.crke:
             return PONOVLJENA_CRKA
         else:
+            self.crke.append(crka)
             if crka not in self.geslo:
                 if self.poraz():
                     return PORAZ
@@ -70,9 +72,9 @@ class Igra:
             else: return PRAVILNA_CRKA
 
 bazen_besed = []
-with open("besede.txt", "r") as f:
+with open("besede.txt", "r", encoding="utf-8") as f:
     for vrstica in f:
-        bazen_besed.append(vrstica)
+        bazen_besed.append(vrstica.strip())
 
 #random.choise
 
